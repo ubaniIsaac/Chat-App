@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 
 const CONNECTION_URL = 'mongodb://localhost:27017/chatdb'
-// 'mongodb+srv://isaacMain:chimdindu1@nasacluster.zixrz.mongodb.net/chat-api?retryWrites=true&w=majority';
+
 
 
 mongoose.connect(CONNECTION_URL, {
