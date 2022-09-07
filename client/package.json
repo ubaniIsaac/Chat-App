@@ -6,19 +6,13 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-<<<<<<< HEAD
     "axios": "^0.27.2",
-=======
->>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "socket.io-client": "^4.5.1",
-<<<<<<< HEAD
     "universal-cookie": "^4.0.4",
-=======
->>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },

@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import useChat from './useChat';
-<<<<<<< HEAD
 import Cookies from 'universal-cookie'
 const cookies = new Cookies();
-=======
->>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
 
 
 const ChatBody = () => {
@@ -17,14 +14,9 @@ const ChatBody = () => {
     const navigate = useNavigate();
 
     const handleLeaveRoom = () => {
-<<<<<<< HEAD
         cookies.remove("TOKEN", { path: "/" });
         localStorage.removeItem('userName');
-        navigate('/');
-=======
-        localStorage.removeItem('userName');
-        navigate('/signin');
->>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
+        navigate('/room-select');
         window.location.reload();
     };
 

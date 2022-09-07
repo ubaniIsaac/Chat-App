@@ -1,6 +1,5 @@
 const messageModel = require('../models/messages.model')
 
-<<<<<<< HEAD
 exports.postMessage = async (req, res) => {
     try {
         const { chatRoom } = req.params
@@ -33,6 +32,3 @@ exports.getAllMessages = async (req, res) => {
         })
     }
 }
-=======
-exports.postMessage
->>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1

@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from 'react'
-<<<<<<< HEAD
 import { useParams, useNavigate } from 'react-router-dom';
 
-=======
->>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
 
 const ChatBar = ({ socket }) => {
 
     const [users, setUsers] = useState([]);
-<<<<<<< HEAD
     const navigate = useNavigate()
 
     useEffect(() => {
         socket.on('newUserResponse', (data) => setUsers(data));
-        console.log(users)
-=======
-
-    useEffect(() => {
-        socket.on('newUserResponse', (data) => setUsers(data));
->>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
     }, [socket, users]);
 
     return (
@@ -29,11 +19,7 @@ const ChatBar = ({ socket }) => {
                 <h4 className="chat__header">ACTIVE USERS</h4>
                 <div className="chat__users">
                     {users.map((user) => (
-<<<<<<< HEAD
                         <p key={user.socketID}>{user.username}</p>
-=======
-                        <p key={user.socketID}>{user.userName}</p>
->>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
                     ))}
                 </div>
                 <h4 className="chat__header">OPEN ROOMS</h4>

@@ -18,19 +18,12 @@ const SignUp = ({ signup }) => {
             && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
             &&
             password) {
-<<<<<<< HEAD
             signup(username, email, password)
-=======
->>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
-            navigate('/signin')
+            navigate('/')
         } else {
             alert('Insert Email & Password')
         }
 
-<<<<<<< HEAD
-=======
-        signup(username, email, password)
->>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
     }
 
     return (

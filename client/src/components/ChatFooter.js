@@ -14,7 +14,6 @@ const ChatFooter = () => {
     const handleSendMessage = (e) => {
         e.preventDefault()
         sendMessage(newMessage)
-        // console.log({ userName: localStorage.getItem('userName'), newMessage });
         setNewMessage("")
 
 

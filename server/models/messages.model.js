@@ -8,19 +8,12 @@ const chatMessageSchema = new mongoose.Schema(
             type: String,
             default: () => uuidv4().replace(/\-/g, ""),
         },
-<<<<<<< HEAD
         chatRoom: String,
         message: {
             type: mongoose.Schema.Types.Mixed,
             required: true
         },
         sender: String,
-=======
-        chatRoomId: String,
-        message: mongoose.Schema.Types.Mixed,
-        type: String,
-        postedByUser: String,
->>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
     },
     {
         timestamps: true,
@@ -28,7 +21,6 @@ const chatMessageSchema = new mongoose.Schema(
     }
 );
 
-<<<<<<< HEAD
 chatMessageSchema.statics.getAllMessages = async function (chatRoom) {
     try {
         const messages = await this.find({ chatRoom })
@@ -50,18 +42,6 @@ chatMessageSchema.statics.postMessage = async function (
             sender
         })
         return sentMessage;
-=======
-chatMessageSchema.statics.postMessage = async function (
-    message,
-    postedByUser
-) {
-    try {
-        const post = await this.create({
-            chatRoomId,
-            message,
-            postedByUser
-        })
->>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
     } catch (error) {
         throw error
     }

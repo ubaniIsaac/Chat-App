@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-<<<<<<< HEAD
 import { useParams, useNavigate } from 'react-router-dom'
 import Cookies from "universal-cookie";
 const cookies = new Cookies()
@@ -19,7 +18,6 @@ const RoomSelect = ({ socket }) => {
         e.preventDefault()
         const username = localStorage.getItem('userName')
         socket.emit('newUser', { username, socketID: socket.id })
-        console.log(username)
         try {
             const res = await fetch(`${API_URL}/room-select`, {
                 method: 'POST',
@@ -33,7 +31,6 @@ const RoomSelect = ({ socket }) => {
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log(data)
                     cookies.set("TOKEN", data['token'], {
                         path: "/",
                     })
@@ -42,7 +39,6 @@ const RoomSelect = ({ socket }) => {
                 })
         } catch (error) {
             new Error();
-            console.log(error)
         }
 
 
@@ -50,24 +46,6 @@ const RoomSelect = ({ socket }) => {
     };
 
 
-=======
-import { useNavigate } from 'react-router-dom'
-
-const RoomSelect = () => {
-
-    const navigate = useNavigate()
-    const [roomName, setRoomName] = useState('');
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-
-        // onAdd(roomName)
-
-        navigate(`/${roomName}`)
-
-    };
-
->>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
     return (
         <div className='home-container'>
             <form onSubmit={handleSubmit}>
