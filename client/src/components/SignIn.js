@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../SignIn.css'
 
+<<<<<<< HEAD
 const SignIn = ({ login }) => {
 
     const [userName, setUserName] = useState('')
@@ -14,10 +15,35 @@ const SignIn = ({ login }) => {
         if (userName && password) {
             localStorage.setItem('userName', userName);
             login(userName, password)
+=======
+const SignIn = ({ login, socket }) => {
+
+    const [userName, setUserName] = useState('')
+    const [password, setPassword] = useState('')
+    const navigate = useNavigate()
+
+
+    // const
+    const onSubmit = (e) => {
+        e.preventDefault()
+
+        if (userName
+            // && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+            &&
+            password) {
+
+            localStorage.setItem('userName', userName);
+            socket.emit('newUser', { userName, socketID: socket.id })
+            navigate('/chat');
+>>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
         } else {
             alert('Insert Email & Password')
         }
 
+<<<<<<< HEAD
+=======
+        login(userName, password)
+>>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
 
     }
 

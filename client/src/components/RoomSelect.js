@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+<<<<<<< HEAD
 import { useParams, useNavigate } from 'react-router-dom'
 import Cookies from "universal-cookie";
 const cookies = new Cookies()
@@ -49,6 +50,24 @@ const RoomSelect = ({ socket }) => {
     };
 
 
+=======
+import { useNavigate } from 'react-router-dom'
+
+const RoomSelect = () => {
+
+    const navigate = useNavigate()
+    const [roomName, setRoomName] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        // onAdd(roomName)
+
+        navigate(`/${roomName}`)
+
+    };
+
+>>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
     return (
         <div className='home-container'>
             <form onSubmit={handleSubmit}>

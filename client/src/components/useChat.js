@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import socketIOClient from "socket.io-client";
+<<<<<<< HEAD
 import Cookies from "universal-cookie";
 const cookies = new Cookies()
+=======
+>>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
 
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage"; // Name of the event
 const SOCKET_SERVER_URL = "http://localhost:4000";
@@ -10,10 +13,13 @@ const useChat = (roomId) => {
 
     const [messages, setMessages] = useState([]);
     const socketRef = useRef();
+<<<<<<< HEAD
     const token = cookies.get("TOKEN");
 
 
 
+=======
+>>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
 
 
     useEffect(() => {
@@ -28,7 +34,10 @@ const useChat = (roomId) => {
                 ownedByCurrentUser: message.senderId === socketRef.current.id,
 
             };
+<<<<<<< HEAD
             // fetchMessages()
+=======
+>>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
             setMessages((messages) => [...messages, incomingMessage])
         });
 
@@ -36,6 +45,7 @@ const useChat = (roomId) => {
         return () => {
             socketRef.current.disconnect();
         };
+<<<<<<< HEAD
 
 
     }, [roomId]);
@@ -76,6 +86,11 @@ const useChat = (roomId) => {
         const data = await res.json()
         console.log(data)
 
+=======
+    }, [roomId]);
+
+    const sendMessage = (messageBody) => {
+>>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
         if (messageBody.trim() && localStorage.getItem('userName')) {
             socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
                 body: messageBody,

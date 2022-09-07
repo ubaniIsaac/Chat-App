@@ -1,8 +1,13 @@
 const mongoose = require('mongoose')
 
 
+<<<<<<< HEAD
 const CONNECTION_URL = 'mongodb://localhost:27017/chatappdb'
 // 'mongodb+srv://isaacMain:chimdindu1@nasacluster.zixrz.mongodb.net/chat-api?retryWrites=true&w=majority';
+=======
+const CONNECTION_URL = 'mongodb://localhost:27017/chatdb'
+
+>>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
 
 
 mongoose.connect(CONNECTION_URL, {
@@ -22,4 +27,8 @@ mongoose.connection.on('error', error => {
 })
 mongoose.connection.on('disconnected', () => {
     console.log('Mongo is disconnected')
+<<<<<<< HEAD
 })
+=======
+})
+>>>>>>> 42da6163205bb56d53ea51ce14af1038ab8748c1
