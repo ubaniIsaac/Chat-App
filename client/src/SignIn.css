@@ -1,0 +1,40 @@
+* {
+    text-align: center;
+}
+
+.form-header {
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+}
+
+.label {
+    display: block;
+    margin: 10px;
+
+
+}
+
+.signin {
+    height: 30px;
+    min-width: 20%;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.btn {
+
+    padding: 5px;
+    width: 20%;
+    margin: 10px auto;
+    display: block;
+    height: 50px;
+    background: #1652F0;
+    color: white;
+    font: bold 15px arial, sans-serif;
+    border-style: outset;
+    border-color: #1652F0;
+    border-radius: 5px;
+
+}
