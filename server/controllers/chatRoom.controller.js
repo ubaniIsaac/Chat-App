@@ -28,3 +28,17 @@ exports.createRoom = async (req, res) => {
         throw error
     }
 }
+
+exports.getAllRooms = async (req, res) => {
+    try {
+        const allRooms = await chatRoomModel.getAllRooms()
+        return res.status(200).json({
+            allRooms
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: error
+        })
+    }
+}

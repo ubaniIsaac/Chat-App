@@ -10,10 +10,7 @@ const useChat = (roomId) => {
 
     const [messages, setMessages] = useState([]);
     const socketRef = useRef();
-    const token = cookies.get("TOKEN");
-
-
-
+    const token = cookies.get("TOKEN")
 
 
     useEffect(() => {
@@ -21,6 +18,7 @@ const useChat = (roomId) => {
         socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
             query: { roomId },
         });
+        fetchMessages()
 
         socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
             const incomingMessage = {
@@ -28,7 +26,6 @@ const useChat = (roomId) => {
                 ownedByCurrentUser: message.senderId === socketRef.current.id,
 
             };
-            // fetchMessages()
             setMessages((messages) => [...messages, incomingMessage])
         });
 
@@ -50,9 +47,20 @@ const useChat = (roomId) => {
                 }
             })
 
-            const data = await res.json()
+                .then((response) => response.json())
+                .then((data) => {
+                    const spreadOutMessage = data.messages
+                    const allMessages = {
+                        ...spreadOutMessage,
+                        ownedByCurrentUser: spreadOutMessage.sender === cookies.get('userName'),
 
-            // setMessages(data)
+                    };
+
+                    for (let i = 0; i < spreadOutMessage.length; i++) {
+                        setMessages((messages) => [...messages, spreadOutMessage[i]])
+                    }
+                }
+                )
         } catch (error) {
             throw error
         }
@@ -70,18 +78,18 @@ const useChat = (roomId) => {
             body: JSON.stringify({
                 "message": messageBody,
                 "chatRoom": roomId,
-                "sender": localStorage.getItem('userName')
+                "sender": cookies.get('userName')
             })
         })
 
         const data = await res.json()
 
-        if (messageBody.trim() && localStorage.getItem('userName')) {
+        if (messageBody.trim() && cookies.get('userName')) {
             socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
-                body: messageBody,
-                name: localStorage.getItem('userName'),
+                message: messageBody,
+                sender: cookies.get('userName'),
                 socketId: socketRef.current.id,
-                id: `${socketRef.current.id}${Math.random()}`
+                _id: `${socketRef.current.id}${Math.random()}`
             });
         }
 

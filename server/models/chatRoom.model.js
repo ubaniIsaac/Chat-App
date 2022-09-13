@@ -42,4 +42,14 @@ chatRoomSchema.statics.createRoom = async function (roomName) {
     }
 }
 
+chatRoomSchema.statics.getAllRooms = async function () {
+    try {
+        const allRooms = await this.find({}, { '__v': 0 })
+        return allRooms;
+    } catch (error) {
+        console.log(error);
+        throw error
+
+    }
+}
 module.exports = mongoose.model("ChatRoom", chatRoomSchema)

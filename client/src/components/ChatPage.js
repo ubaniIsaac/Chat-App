@@ -1,35 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ChatBar from './ChatBar';
 import ChatBody from './ChatBody';
 import ChatFooter from './ChatFooter';
 import socketIO from 'socket.io-client';
 import Cookies from 'universal-cookie'
+import useChat from './useChat';
 const cookies = new Cookies();
 
 
 
-const socket = socketIO.connect('http://localhost:4000');
 
-const ChatPage = (props) => {
-    const token = cookies.get("TOKEN")
+
+const ChatPage = ({ socket }) => {
+
+    const { roomId } = useParams();
+    const { messages, sendMessage } = useChat(roomId)
     const navigate = useNavigate();
+    const username = cookies.get('userName')
 
     useEffect(() => {
-        if (!token) {
-            navigate('/')
-        }
-    }, [])
-
-
+        socket.emit('newUser', { username, socketID: socket.id })
+    }, [username])
 
     return (
 
         <div className="chat">
             <ChatBar socket={socket} />
             <div className="chat__main">
-
-                <ChatBody />
+                <ChatBody messages={messages} />
                 <ChatFooter />
 
             </div>

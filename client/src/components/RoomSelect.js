@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Cookies from "universal-cookie";
 const cookies = new Cookies()
 
 
 
-const RoomSelect = ({ socket }) => {
+const RoomSelect = () => {
     const API_URL = 'http://localhost:4000'
 
 
@@ -13,11 +13,41 @@ const RoomSelect = ({ socket }) => {
     const { roomId } = useParams();
     const navigate = useNavigate()
     const [roomName, setRoomName] = useState('');
+    const [rooms, setRooms] = useState([])
+
+    useEffect(() => {
+        fetchRooms()
+    }, [])
+
+    const fetchRooms = async () => {
+        try {
+            const res = await fetch(`${API_URL}/room-select`, {
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json',
+                    'X-Authorization': `${token}`,
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    const roomsArr = data.allRooms
+                    for (let i = 0; i < roomsArr.length; i++) {
+                        setRooms((room) => [...room, roomsArr[i]])
+                    }
+                }
+                )
+        } catch (error) {
+            new Error();
+        }
+
+    }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const username = localStorage.getItem('userName')
-        socket.emit('newUser', { username, socketID: socket.id })
+        if (!roomName) {
+            return alert('INPUT A ROOM')
+        }
         try {
             const res = await fetch(`${API_URL}/room-select`, {
                 method: 'POST',
@@ -65,7 +95,16 @@ const RoomSelect = ({ socket }) => {
                 </button>
 
             </form>
-
+            <div >
+                {rooms.map((room) =>
+                (
+                    <div key={room._id}>
+                        <ul>
+                            <li><a href={room.roomName}>{room.roomName}</a></li>
+                        </ul>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

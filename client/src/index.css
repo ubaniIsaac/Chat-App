@@ -177,3 +177,11 @@
   font-size: 13px;
   font-style: italic;
 }
+
+a {
+  display: block;
+  text-decoration: none;
+  margin-bottom: 10px;
+  color: #607eaa;
+  font-size: 14px;
+}

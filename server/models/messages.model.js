@@ -23,7 +23,8 @@ const chatMessageSchema = new mongoose.Schema(
 
 chatMessageSchema.statics.getAllMessages = async function (chatRoom) {
     try {
-        const messages = await this.find({ chatRoom })
+        const messages = await this.find({ chatRoom }, { 'chatRoom': 0, '__v': 0, 'createdAt': 0, 'updatedAt': 0 })
+
         return messages
     } catch (error) {
         throw error

@@ -16,10 +16,16 @@ exports.signup = async (req, res) => {
             return res.status(400).send({ err: "Content cannot be empty" })
         }
 
-        const existingUser = await usermodel.findOne({ email: email })
-        if (existingUser) {
+        const existingEmail = await usermodel.findOne({ email: email })
+        const existingUserName = await usermodel.findOne({ userName: userName })
+        if (existingEmail) {
             return res.status(400).send({
-                error: "Email already in use"
+                error: "Email or already in use"
+            })
+        }
+        if (existingUserName) {
+            return res.status(400).send({
+                error: "Username or already in use"
             })
         }
         const hashPassword = await bcrypt.hash(password, 10);

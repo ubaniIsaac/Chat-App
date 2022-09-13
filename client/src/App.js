@@ -13,7 +13,6 @@ function App() {
 
 
   const API_URL = 'http://localhost:4000'
-  // const navigate = useNavigate()
 
   const login = async (userName, password) => {
     try {
@@ -33,7 +32,9 @@ function App() {
           cookies.set("TOKEN", data['token'], {
             path: "/",
           })
-          if (data.token) { window.location.href = "/room-select" }
+          if (data.token) {
+            window.location.href = "/room-select"
+          }
           else {
             alert(data.message)
           }
@@ -46,17 +47,32 @@ function App() {
   }
 
   const signup = async (userName, email, password) => {
-    const res = await fetch(`${API_URL}/signup`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        "userName": userName,
-        "email": email,
-        "password": password
+    try {
+      const res = await fetch(`${API_URL}/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          "userName": userName,
+          "email": email,
+          "password": password
+        })
       })
-    })
+        .then((response) => response.json())
+        .then((data) => {
+
+          if (data.status === 'success') {
+            window.location.href = "/"
+          }
+          else {
+            alert(data.error)
+          }
+        })
+    } catch (error) {
+      new Error();
+    }
+
   }
 
 
@@ -65,8 +81,8 @@ function App() {
       <Routes>
         <Route path="/signup" element={<SignUp signup={signup} />}></Route>
         <Route path="/" element={<SignIn login={login} />}></Route>
-        <Route path="/room-select" element={cookies.get("TOKEN") ? <RoomSelect socket={socket} /> : <Navigate to="/" replace />}></Route>
-        <Route path={`/:roomId`} element={<ChatPage />}></Route>
+        <Route path="/room-select" element={cookies.get("TOKEN") ? <RoomSelect /> : <Navigate to="/" replace />}></Route>
+        <Route path={`/:roomId`} element={cookies.get("TOKEN") ? <ChatPage socket={socket} /> : <Navigate to="/" replace />}></Route>
       </Routes>
     </Router >
   );

@@ -2,38 +2,42 @@ const http = require('http')
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const multer = require('multer')
+const mongoose = require("mongoose")
 
 
 require('./config/mongo')
 
-const chatRoomRouter = require('./routes/chatRoom.route')
-
 
 const app = express()
 
-app.use(cors({
-    origin: 'http://localhost:3000',
-}));
+app.use(cors());
 
-const PORT = 4000;
-const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
-app.set('port', PORT)
+
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
+
+
 require('./routes/chatRoom.route')(app);
 require('./routes/user.router')(app);
 require('./routes/messages.route')(app);
+require('./routes/file.route')(app); // will implement file sharing at a later time
 
 const server = http.createServer(app);
 
 const io = require("socket.io")(server, {
     cors: {
-        origin: "*",
+        origin: "http://localhost:3000",
     },
 });
+
+const PORT = 4000;
+const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
+app.set('port', PORT)
 let users = [];
+console.log(users)
 
 io.on("connection", (socket) => {
 
@@ -47,9 +51,12 @@ io.on("connection", (socket) => {
     });
 
     socket.on('newUser', (data) => {
-        users.push(data);
+        users.push(data)
+        users = users.filter((v, i, a) => a.findIndex(v2 => ['username'].every(k => v2[k] === v[k])) === i)
+        console.log('connected', users)
 
-        io.in(roomId).emit('newUserResponse', users)
+
+        io.emit('newUserResponse', users)
     })
 
     // Leave the room if the user closes the socket

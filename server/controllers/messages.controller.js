@@ -21,7 +21,7 @@ exports.postMessage = async (req, res) => {
 exports.getAllMessages = async (req, res) => {
     try {
         const { chatRoom } = req.params
-        const messages = await messageModel.getAllMessages(chatRoom);
+        const messages = await messageModel.getAllMessages(chatRoom)
         return res.status(200).json({
             messages
         })

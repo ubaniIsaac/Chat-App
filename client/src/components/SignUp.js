@@ -10,18 +10,16 @@ const SignUp = ({ signup }) => {
     const navigate = useNavigate()
 
 
-    // const
     const onSubmit = (e) => {
         e.preventDefault()
 
         if (email
             && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-            &&
+            && username &&
             password) {
             signup(username, email, password)
-            navigate('/')
         } else {
-            alert('Insert Email & Password')
+            alert('Complete all fields')
         }
 
     }
