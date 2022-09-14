@@ -4,24 +4,35 @@ import useChat from './useChat';
 import Cookies from 'universal-cookie'
 const cookies = new Cookies();
 
+const API_URL = 'http://localhost:4000'
 
 const ChatBody = ({ messages }) => {
 
     const { roomId } = useParams();
     const [newMessage, setNewMessage] = useState([])
-    // const lastMessageRef = useRef(null)
+    const lastMessageRef = useRef(null)
 
     const navigate = useNavigate();
 
-    const handleLogOut = () => {
+    const handleLogOut = async () => {
+        try {
+            const res = await fetch(`${API_URL}/logout`, {
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json',
+                }
+            })
+        } catch (error) {
+            new Error();
+        }
         cookies.remove('userName');
         cookies.remove("TOKEN", { path: "/" });
         navigate('/');
         window.location.reload();
     };
-    // useEffect(() => {
-    //     lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' })
-    // }, [messages])
+    useEffect(() => {
+        lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }, [messages])
 
 
 
@@ -54,14 +65,6 @@ const ChatBody = ({ messages }) => {
                             </div>
                         ))}
 
-
-
-                    {/* <div ref={lastMessageRef} /> */}
-
-                    {/*This is triggered when a user is typing*/}
-                    <div className="message__status">
-                        <p>Someone is typing...</p>
-                    </div>
                 </div>
             </div>
         </>

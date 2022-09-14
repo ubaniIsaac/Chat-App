@@ -77,7 +77,10 @@ const RoomSelect = () => {
 
 
     return (
-        <div className='home-container'>
+        <div className='roomselect__container'>
+
+            <h2>Select existing Chat-Room or create new room</h2>
+
             <form onSubmit={handleSubmit}>
                 <input
                     className='room-input'
@@ -100,7 +103,7 @@ const RoomSelect = () => {
                 (
                     <div key={room._id}>
                         <ul>
-                            <li><a href={room.roomName}>{room.roomName}</a></li>
+                            <li className='room__list'><a href={room.roomName}>{room.roomName}</a></li>
                         </ul>
                     </div>
                 ))}

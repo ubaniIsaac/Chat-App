@@ -4,10 +4,48 @@ import '../SignIn.css'
 import Cookies from "universal-cookie";
 const cookies = new Cookies()
 
-const SignIn = ({ login }) => {
+const API_URL = 'http://localhost:4000'
+const SignIn = () => {
 
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
+    const [success, setSuccess] = useState(false)
+    const [loginResponse, setLoginResponse] = useState('')
+
+
+    const login = async (userName, password) => {
+        try {
+            const res = await fetch(`${API_URL}`, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+
+                    "userName": userName,
+                    "password": password
+                })
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    cookies.set("TOKEN", data['token'], {
+                        path: "/",
+                    })
+                    if (data.token) {
+                        setSuccess(true)
+                        window.location.href = "/room-select"
+                    }
+                    else {
+                        setSuccess(false)
+                        setLoginResponse(data.message)
+                    }
+                })
+        } catch (error) {
+            new Error();
+        }
+
+
+    }
 
 
     const onSubmit = (e) => {
@@ -18,14 +56,14 @@ const SignIn = ({ login }) => {
             cookies.set('userName', userName);
             login(userName, password)
         } else {
-            alert('Insert Email & Password')
+            setLoginResponse('Insert Email & Password')
         }
 
 
     }
 
     return (
-        <div>
+        <div className='container'>
             <header className="form-header">
                 <h1>Sign in with your Username.</h1>
                 <h6>Don't have an account? <span><a href='/signup'>SignUp</a></span></h6>
@@ -55,6 +93,7 @@ const SignIn = ({ login }) => {
                 <button className='btn' type='submit'>SIGN IN</button>
 
             </form>
+            {success === false ? <p>{loginResponse}</p> : <></>}
         </div>
     )
 }

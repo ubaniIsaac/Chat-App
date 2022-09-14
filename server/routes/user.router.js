@@ -12,6 +12,11 @@ module.exports = app => {
 
     userRouter.post('/', userController.login);
 
+    userRouter.get('/logout', (req, res) => {
+        res.removeHeader('x-authorization')
+        if (err) return res.status(400).send(err);
+    });
+
 
     app.use('/', userRouter)
     app.use((err, req, res, next) => {
