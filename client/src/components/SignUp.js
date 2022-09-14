@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import '../SignIn.css'
 
 
@@ -12,7 +11,6 @@ const SignUp = () => {
     const [password, setPassword] = useState('')
     const [success, setSuccess] = useState()
     const [signupResponse, setSignupResponse] = useState('')
-    const navigate = useNavigate()
 
     const signup = async (userName, email, password) => {
         try {

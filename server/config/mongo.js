@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
+require("dotenv").config()
 
 
-const CONNECTION_URL = 'mongodb://localhost:27017/chatappdb'
-// 'mongodb+srv://isaacMain:chimdindu1@nasacluster.zixrz.mongodb.net/chat-api?retryWrites=true&w=majority';
 
+const CONNECTION_URL = process.env.MONGO_URI
 
 mongoose.connect(CONNECTION_URL, {
     useNewUrlParser: true,

@@ -4,8 +4,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const multer = require('multer')
 const mongoose = require("mongoose")
-
-
+require("dotenv").config()
 require('./config/mongo')
 
 
@@ -33,7 +32,7 @@ const io = require("socket.io")(server, {
     },
 });
 
-const PORT = 4000;
+const PORT = process.env.PORT;
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 app.set('port', PORT)
 let users = [];

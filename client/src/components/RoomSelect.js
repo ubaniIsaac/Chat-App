@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Cookies from "universal-cookie";
 const cookies = new Cookies()
 
@@ -10,14 +10,9 @@ const RoomSelect = () => {
 
 
     const token = cookies.get("TOKEN");
-    const { roomId } = useParams();
     const navigate = useNavigate()
     const [roomName, setRoomName] = useState('');
     const [rooms, setRooms] = useState([])
-
-    useEffect(() => {
-        fetchRooms()
-    }, [])
 
     const fetchRooms = async () => {
         try {
@@ -41,6 +36,10 @@ const RoomSelect = () => {
         }
 
     }
+
+    useEffect(() => {
+        fetchRooms()
+    }, [])
 
 
     const handleSubmit = async (e) => {
