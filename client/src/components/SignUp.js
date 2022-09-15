@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import '../SignIn.css'
 
 
-const API_URL = 'https://chat-backend-bvqe.onrender.com'
+const API_URL = 'http://localhost:4000'
 
 const SignUp = () => {
 
@@ -12,7 +11,6 @@ const SignUp = () => {
     const [password, setPassword] = useState('')
     const [success, setSuccess] = useState()
     const [signupResponse, setSignupResponse] = useState('')
-    const navigate = useNavigate()
 
     const signup = async (userName, email, password) => {
         try {
@@ -30,16 +28,13 @@ const SignUp = () => {
                 .then((response) => response.json())
                 .then((data) => {
 
-                    if (data.status !== 'success') {
+                    if (data.status === 'success') {
+                        window.location.href = "/"
+                    }
+                    else {
                         setSuccess(false)
                         setSignupResponse(data.error)
-                        return
                     }
-                    navigate("/")
-                    window.location.reload();
-
-
-
                 })
         } catch (error) {
             new Error();
