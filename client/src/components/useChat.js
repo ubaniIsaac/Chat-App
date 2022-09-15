@@ -4,7 +4,7 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies()
 
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage"; // Name of the event
-const SOCKET_SERVER_URL = "http://localhost:4000";
+const SOCKET_SERVER_URL = "https://chat-backend-bvqe.onrender.com";
 
 const useChat = (roomId) => {
 

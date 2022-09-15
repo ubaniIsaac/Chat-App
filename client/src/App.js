@@ -7,7 +7,7 @@ import SignUp from './components/SignUp';
 import Cookies from 'universal-cookie'
 const cookies = new Cookies();
 
-const socket = socketIO.connect('http://localhost:4000');
+const socket = socketIO.connect('https://chat-backend-bvqe.onrender.com');
 
 function App() {
 

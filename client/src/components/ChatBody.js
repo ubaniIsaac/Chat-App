@@ -4,7 +4,7 @@ import useChat from './useChat';
 import Cookies from 'universal-cookie'
 const cookies = new Cookies();
 
-const API_URL = 'http://localhost:4000'
+const API_URL = 'https://chat-backend-bvqe.onrender.com'
 
 const ChatBody = ({ messages }) => {
 

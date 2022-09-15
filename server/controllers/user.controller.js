@@ -30,14 +30,7 @@ exports.signup = async (req, res) => {
         }
         const hashPassword = await bcrypt.hash(password, 10);
         const user = await usermodel.signup(email, userName, hashPassword);
-        if (!user) {
-            return res.status(500).send({
-                error: "Some error occured"
-            })
-        }
-        else {
-            return res.json({ status: "success", data: user })
-        }
+        res.json({ status: "success", data: user })
 
     } catch (error) {
         throw error

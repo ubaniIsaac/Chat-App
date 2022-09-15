@@ -3,7 +3,7 @@ import '../SignIn.css'
 import Cookies from "universal-cookie";
 const cookies = new Cookies()
 
-const API_URL = 'http://localhost:4000'
+const API_URL = 'https://chat-backend-bvqe.onrender.com'
 const SignIn = () => {
 
     const [userName, setUserName] = useState('')
@@ -30,13 +30,14 @@ const SignIn = () => {
                     cookies.set("TOKEN", data['token'], {
                         path: "/",
                     })
-                    if (data.token) {
-                        setSuccess(true)
-                        window.location.href = "/room-select"
-                    }
-                    else {
+                    if (!data.token) {
                         setSuccess(false)
                         setLoginResponse(data.message)
+
+                    }
+                    else {
+                        setSuccess(true)
+                        window.location.href = "/room-select"
                     }
                 })
         } catch (error) {
