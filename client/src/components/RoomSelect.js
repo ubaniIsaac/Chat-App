@@ -102,7 +102,7 @@ const RoomSelect = () => {
                 (
                     <div key={room._id}>
                         <ul>
-                            <li className='room__list'><a href={room.roomName}>{room.roomName}</a></li>
+                            <li className='room__list'><a className='room-links' href={room.roomName}>{room.roomName}</a></li>
                         </ul>
                     </div>
                 ))}

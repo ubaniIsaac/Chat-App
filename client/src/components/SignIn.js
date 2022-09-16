@@ -66,7 +66,7 @@ const SignIn = () => {
         <div className='container'>
             <header className="form-header">
                 <h1>Sign in with your Username.</h1>
-                <h6>Don't have an account? <span><a href='/signup'>SignUp</a></span></h6>
+                <h6>Don't have an account? </h6><span><a href='/signup'>SignUp</a></span>
             </header>
             <form onSubmit={onSubmit}>
                 <label className="label">Username </label>

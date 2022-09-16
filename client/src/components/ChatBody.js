@@ -27,7 +27,7 @@ const ChatBody = ({ messages }) => {
         }
         cookies.remove('userName');
         cookies.remove("TOKEN", { path: "/" });
-        navigate('/');
+        navigate('/signin');
         window.location.reload();
     };
     useEffect(() => {
@@ -58,12 +58,13 @@ const ChatBody = ({ messages }) => {
                             </div>
                         ) : (
                             <div className="message__chats" key={message._id}>
-                                <p>{message.sender}</p>
+                                <p className='recipient__name'>{message.sender}</p>
                                 <div className="message__recipient">
                                     <p>{message.message}</p>
                                 </div>
                             </div>
                         ))}
+                    <div ref={lastMessageRef} />
 
                 </div>
             </div>

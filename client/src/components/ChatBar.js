@@ -90,7 +90,7 @@ const ChatBar = ({ socket }) => {
                 <h4 className="chat__header">OPEN ROOMS</h4>
                 <div className="chat__users" >
                     {rooms.map((room) => (
-                        <a key={room._id} href={room.roomName}>{room.roomName}</a>
+                        <a className='room-links' key={room._id} href={room.roomName}>{room.roomName}</a>
                     ))}
 
                 </div>

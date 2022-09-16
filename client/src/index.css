@@ -166,6 +166,10 @@
   font-size: 13px;
 }
 
+.recipient__name {
+  text-align: start;
+}
+
 .sender__name {
   text-align: right;
 }

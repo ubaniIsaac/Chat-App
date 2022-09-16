@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import '../SignIn.css'
 
 
-const API_URL = 'http://localhost:4000'
+const API_URL = 'https://chat-backend-bvqe.onrender.com'
 
 const SignUp = () => {
 
@@ -29,7 +29,7 @@ const SignUp = () => {
                 .then((data) => {
 
                     if (data.status === 'success') {
-                        window.location.href = "/"
+                        window.location.href = "/signin"
                     }
                     else {
                         setSuccess(false)
@@ -58,7 +58,7 @@ const SignUp = () => {
     return (
         <div className='container'>
 
-            <h6>Already Have an account? <span><a href='/'>Signin</a></span></h6>
+            <h4>Already Have an account?</h4><span><a href='/signin'>Signin</a></span>
 
             <form onSubmit={onSubmit}>
                 {/* <label className="label">Name</label>
