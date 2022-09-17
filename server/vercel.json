@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "chat-app",
+  "name": "chat-app-server",
   "builds": [
     { "src": "script.js", "use": "@vercel/node" }
   ],
