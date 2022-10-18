@@ -5,7 +5,7 @@ const cookies = new Cookies()
 
 
 const ChatBar = ({ socket }) => {
-    const API_URL = 'https://chat-backend-bvqe.onrender.com'
+    const API_URL = 'https://iceu-chat-back.fly.dev/'
 
 
     const token = cookies.get("TOKEN");

@@ -4,7 +4,7 @@ import useChat from './useChat';
 import Cookies from 'universal-cookie'
 const cookies = new Cookies();
 
-const API_URL = 'https://chat-backend-bvqe.onrender.com'
+const API_URL = 'https://iceu-chat-back.fly.dev/'
 
 const ChatBody = ({ messages }) => {
 

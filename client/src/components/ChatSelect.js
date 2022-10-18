@@ -8,7 +8,7 @@ import socketIO from 'socket.io-client';
 
 
 
-const socket = socketIO.connect('https://chat-backend-bvqe.onrender.com');
+const socket = socketIO.connect('https://iceu-chat-back.fly.dev/');
 
 const ChatSelect = (props) => {
 
