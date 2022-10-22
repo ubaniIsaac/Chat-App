@@ -39,7 +39,6 @@ const PORT = process.env.PORT;
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 app.set('port', PORT)
 let users = [];
-console.log(users)
 
 io.on("connection", (socket) => {
 
@@ -55,8 +54,6 @@ io.on("connection", (socket) => {
     socket.on('newUser', (data) => {
         users.push(data)
         users = users.filter((v, i, a) => a.findIndex(v2 => ['username'].every(k => v2[k] === v[k])) === i)
-        console.log('connected', users)
-
 
         io.emit('newUserResponse', users)
     })
@@ -65,7 +62,6 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
 
         users = users.filter((user) => user.socketID !== socket.id)
-        console.log('disconnected', users)
 
         io.emit('newUserResponse', users)
         socket.disconnect();
