@@ -3,7 +3,7 @@ import '../SignIn.css'
 import Cookies from "universal-cookie";
 const cookies = new Cookies()
 
-const API_URL = 'https://iceu-chat-back.fly.dev/'
+const API_URL = 'https://chat-backend-bvqe.onrender.com'
 const SignIn = () => {
 
     const [userName, setUserName] = useState('')

@@ -8,7 +8,7 @@ import Cookies from 'universal-cookie'
 import Home from './components/Home';
 const cookies = new Cookies();
 
-const socket = socketIO.connect('https://iceu-chat-back.fly.dev/');
+const socket = socketIO.connect('https://chat-backend-bvqe.onrender.com');
 
 function App() {
 

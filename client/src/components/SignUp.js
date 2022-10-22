@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import '../SignIn.css'
 
 
-const API_URL = 'https://iceu-chat-back.fly.dev/'
+const API_URL = 'https://chat-backend-bvqe.onrender.com'
 
 const SignUp = () => {
 
