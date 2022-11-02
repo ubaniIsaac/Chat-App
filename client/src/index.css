@@ -20,6 +20,30 @@
   margin-bottom: 30px;
 }
 
+.top-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: ;
+  height: 10rem;
+  width: 100%;
+  margin-top: 5px;
+
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  /* background-color: #435A64; */
+}
+
+.flex>a {
+  height: 2.5rem;
+  background-color: #435A64;
+  border-radius: 9999px;
+  border-color: transparent;
+  text-align: center;
+}
+
 .username__input {
   padding: 10px;
   width: 50%;
