@@ -19,6 +19,11 @@ const Home = () => {
                     <p> Login / Register to get started</p>
                 </div>
 
+                <br />
+                <br />
+
+                If you'd just like to test out the app signin with username-tester & password -tester
+
             </main>
 
             {/* </div>
